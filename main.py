@@ -10,7 +10,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 # Set a limit for the number of characters to pass to the model
-MAX_CHARS_FOR_SUMMARY = 4096
+MAX_CHARS_FOR_SUMMARY = 8192
 
 @app.route('/fetch_text', methods=['GET'])
 def fetch_body_text_api():

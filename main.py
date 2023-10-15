@@ -10,7 +10,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 OPENAI_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci/completions"
 
 # Set a limit for the number of characters to pass to the model
-MAX_CHARS_FOR_SUMMARY = 2000
+MAX_CHARS_FOR_SUMMARY = 4096
 
 @app.route('/fetch_text', methods=['GET'])
 def fetch_body_text_api():
@@ -59,7 +59,7 @@ def generate_summary_api():
         }
         data = {
             "prompt": f"Summarize the following content in a concise manner: {limited_text}",
-            "max_tokens": 500
+            "max_tokens": 600
         }
         openai_response = requests.post(OPENAI_API_ENDPOINT, headers=headers, json=data)
         openai_response.raise_for_status()

@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 # Fetch OpenAI API key from environment variable
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-OPENAI_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci-completions"
+OPENAI_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci/completions"
+
 
 @app.route('/fetch_text', methods=['GET'])
 def fetch_body_text_api():

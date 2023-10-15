@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Fetch OpenAI API key from environment variable
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-OPENAI_API_ENDPOINT = "https://api.openai.com/v1/engines/davinci/completions"
+OPENAI_API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 # Set a limit for the number of characters to pass to the model
 MAX_CHARS_FOR_SUMMARY = 4096

@@ -65,7 +65,7 @@ def generate_summary_api():
         }
         openai_response = requests.post(OPENAI_API_ENDPOINT, headers=headers, json=data)
         openai_response.raise_for_status()
-        summary = openai_response.json()["choices"][0]["text"].strip()
+        summary = openai_response.json()["choices"][0]["message"]["content"].strip()  # Modified line
 
         return jsonify({'summary': summary})
 
@@ -99,7 +99,7 @@ def generate_howto_guide_api():
         }
         openai_response = requests.post(OPENAI_API_ENDPOINT, headers=headers, json=data)
         openai_response.raise_for_status()
-        guide = openai_response.json()["choices"][0]["text"].strip()
+        guide = openai_response.json()["choices"][0]["message"]["content"].strip()  # Modified line
 
         return jsonify({'guide': guide})
 
@@ -107,6 +107,7 @@ def generate_howto_guide_api():
         return jsonify({'guide': f'Error fetching content or calling API: {e}'})
     except Exception as e:
         return jsonify({'guide': f'Unexpected error: {e}'})
+
 
 if __name__ == '__main__':
     app.run(debug=False)

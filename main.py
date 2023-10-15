@@ -58,8 +58,10 @@ def generate_summary_api():
             "Content-Type": "application/json"
         }
         data = {
-            "prompt": f"Summarize the following content in a concise manner: {limited_text}",
-            "max_tokens": 600
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "user", "content": f"Summarize the following content in a concise manner: {limited_text}"}
+            ]
         }
         openai_response = requests.post(OPENAI_API_ENDPOINT, headers=headers, json=data)
         openai_response.raise_for_status()
@@ -90,8 +92,10 @@ def generate_howto_guide_api():
             "Content-Type": "application/json"
         }
         data = {
-            "prompt": f"Given this text: {body_text}, Generate a Friendly How-To Guide with clear, understandable steps based on the text. Make sure to number the steps.",
-            "max_tokens": 500
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "user", "content": f"Given this text: {body_text}, Generate a Friendly How-To Guide with clear, understandable steps based on the text. Make sure to number the steps."}
+            ]
         }
         openai_response = requests.post(OPENAI_API_ENDPOINT, headers=headers, json=data)
         openai_response.raise_for_status()

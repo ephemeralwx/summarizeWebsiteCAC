@@ -105,10 +105,12 @@ def generate_howto_guide_api():
     except Exception as e:
         return jsonify({'guide': f'Unexpected error: {e}'})
 
-@app.route('/ask_question', methods=['GET'])
+@app.route('/ask_question', methods=['POST'])  # was methods=['GET']
 def ask_question():
-    url = request.args.get('url')
-    question = request.args.get('question')
+    data = request.get_json()
+    url = data.get('url')
+    question = data.get('question')
+
 
     if not url or not question:
         return jsonify({'error': 'Both url and question parameters are required'}), 400
@@ -142,4 +144,4 @@ def ask_question():
         return jsonify({'answer': f'Unexpected error: {e}'})
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
